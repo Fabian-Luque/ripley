@@ -1,12 +1,12 @@
 import express from "express";
 import mongoose from "mongoose";
-
 import compression from "compression";
 import cors from "cors";
 
 import { MONGODB_URI } from "./util/secrets";
 
-// import { ProductRoutes } from "./routes/productRoutes";
+import { AccountRoutes } from "./routes/accountRoutes";
+import { TransferRoutes } from "./routes/transferRoutes";
 import { UserRoutes } from "./routes/userRoutes";
 
 class Server {
@@ -21,7 +21,8 @@ class Server {
 
   public routes(): void {
     this.app.use("/api/user", new UserRoutes().router);
-    // this.app.use("/api/products", new ProductRoutes().router);
+    this.app.use("/api/account", new AccountRoutes().router);
+    this.app.use("/api/transfer", new TransferRoutes().router);
   }
 
   public config(): void {
@@ -45,8 +46,9 @@ class Server {
       console.log("Trying to reconnect to Mongo ...");
       setTimeout(() => {
         mongoose.connect(MONGODB_URI, {
-          autoReconnect: true, keepAlive: true,
-          socketTimeoutMS: 3000, connectTimeoutMS: 3000
+          useNewUrlParser: true, keepAlive: true,
+          socketTimeoutMS: 3000, connectTimeoutMS: 3000, 
+          useUnifiedTopology: true
         });
       }, 3000);
     });
@@ -56,10 +58,11 @@ class Server {
     connection.on("error", (error: Error) => {
       console.log("Mongo Connection ERROR: " + error);
     });
-
+    console.log('llega');
+    
     const run = async () => {
       await mongoose.connect(MONGODB_URI, {
-        autoReconnect: true, keepAlive: true
+        useNewUrlParser: true, useUnifiedTopology: true
       });
     };
     run().catch(error => console.error(error));
