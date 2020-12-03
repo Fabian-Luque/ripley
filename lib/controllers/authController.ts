@@ -6,6 +6,8 @@ import "../auth/passportHandler";
 export class AuthController {
 
     public authenticateJWT(req: Request, res: Response, next: NextFunction) {
+        console.log('authenticateJWT');
+
         passport.authenticate("jwt", function (err, user, info) {
         if (err) {
             console.log(err);

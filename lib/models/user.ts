@@ -13,7 +13,7 @@ export const userSchema: Schema = new Schema({
   name: String,
   password: String,
   rut: String,
-  email: String
+  email: String,
 });
 
 
@@ -31,7 +31,7 @@ export const userSchema: Schema = new Schema({
 //   });
 // });
 
-// userSchema.method('comparePassword', function (candidatePassword: string, callback: any) {
+// userSchema.method('isValidPassword', function (candidatePassword: string, callback: any) {
 //     bcrypt.compare(candidatePassword, this.password, (err: Error, isMatch: boolean) => {
 //       callback(err, isMatch);
 //     });

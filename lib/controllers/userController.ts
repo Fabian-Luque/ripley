@@ -23,17 +23,18 @@ export class UserController {
         console.log(User);
         
 
-        const token = jwt.sign({ name: req.body.name, scope : req.body.scope }, JWT_SECRET);
+        const token = jwt.sign({ email: req.body.email, scope : req.body.scope }, JWT_SECRET);
         res.status(200).send({ token: token });
     }
 
     public authenticateUser(req: Request, res: Response, next: NextFunction) {
-        passport.authenticate("local", function (err, user, info) {
+        passport.authenticate('local', function (err, user, info) {
+
             if (err) return next(err);
             if (!user) {
                 return res.status(401).json({ status: "error", code: "unauthorized" });
             } else {
-                const token = jwt.sign({ name: user.name }, JWT_SECRET);
+                const token = jwt.sign({ username: user.username }, JWT_SECRET);
                 res.status(200).send({ token: token });
             }
         });

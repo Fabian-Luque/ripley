@@ -8,10 +8,6 @@ export interface IAccount extends Document {
 }
 
 export const accountSchema = new Schema({
-    // accountId: {
-    //     type: String, required: true,
-    //     unique: true
-    // },
     user: {
         type: Schema.Types.ObjectId,
         ref: "User",

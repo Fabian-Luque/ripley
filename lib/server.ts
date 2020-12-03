@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import compression from "compression";
 import cors from "cors";
+import passport from "passport";
 
 import { MONGODB_URI } from "./util/secrets";
 
@@ -19,11 +20,7 @@ class Server {
     this.mongo();
   }
 
-  public routes(): void {
-    this.app.use("/api/user", new UserRoutes().router);
-    this.app.use("/api/account", new AccountRoutes().router);
-    this.app.use("/api/transfer", new TransferRoutes().router);
-  }
+  
 
   public config(): void {
     this.app.set("port", process.env.PORT || 3000);
@@ -31,6 +28,14 @@ class Server {
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(compression());
     this.app.use(cors());
+    this.app.use(passport.initialize());
+    this.app.use(passport.session());
+  }
+
+  public routes(): void {
+    this.app.use("/api/user", new UserRoutes().router);
+    this.app.use("/api/account", new AccountRoutes().router);
+    this.app.use("/api/transfer", new TransferRoutes().router);
   }
 
   private mongo() {
