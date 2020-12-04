@@ -2,7 +2,7 @@ FROM node:12 as build-step
 RUN mkdir /app
 WORKDIR /app
 COPY Front/package.json /app
-RUN npm install
+RUN npm install --silent
 COPY Front/ /app
 EXPOSE 4201
 CMD ["npm", "start"]

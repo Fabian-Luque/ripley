@@ -2,6 +2,7 @@
 import { AuthController } from "controllers/authController";
 import { Router } from "express";
 import { UserController } from "../controllers/userController";
+import { AuthController } from "../controllers/authController";
 
 export class UserRoutes {
 
