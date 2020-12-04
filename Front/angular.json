@@ -68,7 +68,7 @@
               "src/assets/js/cropper.min.js",
               "src/assets/js/ion.rangeSlider.min.js",
               "src/assets/js/jquery.webticker.min.js",
-              "src/assets/js/ripley.js"
+              "src/assets/js/mystic.js"
             ]
           },
           "configurations": {
