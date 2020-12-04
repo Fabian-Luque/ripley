@@ -4,8 +4,7 @@
   "description": "Back-end node ripley",
   "main": "server.ts",
   "scripts": {
-    "start": "nodemon --exec ts-node -- ./lib/server.ts",
-    "compile": "node_modules/typescript/bin/tsc && node ./dist/server.js "
+    "start": "nodemon --exec ts-node -- ./lib/server.ts"
   },
   "author": "Fabian Luque",
   "license": "ISC",

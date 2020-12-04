@@ -39,7 +39,6 @@ export class UserController {
             }
             res.status(200).send(resp);
         } catch (error) {
-            console.log(error);
             res.status(400).send('email must be unique');
         }
         
@@ -77,7 +76,7 @@ export class UserController {
         const transfers = await User.find();
         res.json({ transfers });
     }
-    
+
     public async  getUserByRUT(req: Request, res: Response, next: NextFunction) {
         try {
             const user = await User.findOne({ rut: req.params.id });

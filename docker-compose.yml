@@ -1,0 +1,44 @@
+version: "3"
+services:
+    dbmongo:
+      container_name: dbmongo
+      image: mongo
+      ports:
+        - "27017:27017"  
+      volumes:
+        - ./.data:/data/db
+      networks:
+        - app-network
+    apiripley:
+      container_name: apiripley
+      build: 
+        context: .
+        dockerfile: ./build/dockerfile-node
+      ports :
+        - "3000:3000"
+      depends_on:
+        - dbmongo
+      volumes:
+        - ./back:/home/node/app
+      networks:
+        - app-network
+    web:
+      build: 
+        context: .
+        dockerfile: ./build/dockerfile-angular
+      stdin_open: true
+      ports:
+        - '4200:4200'
+      depends_on:
+        - dbmongo
+        - apiripley
+      environment:
+        - apiUrl=http://localhost:3000
+        - PORT=4200
+      networks:
+        - app-network
+networks:
+  app-network:
+    driver: bridge
+volumes:
+  ripleydata:
