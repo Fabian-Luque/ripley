@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mystic": {
+    "ripley": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mystic",
+            "outputPath": "dist/ripley",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,7 +68,7 @@
               "src/assets/js/cropper.min.js",
               "src/assets/js/ion.rangeSlider.min.js",
               "src/assets/js/jquery.webticker.min.js",
-              "src/assets/js/mystic.js"
+              "src/assets/js/ripley.js"
             ]
           },
           "configurations": {
@@ -105,18 +105,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mystic:build"
+            "browserTarget": "ripley:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "mystic:build:production"
+              "browserTarget": "ripley:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mystic:build"
+            "browserTarget": "ripley:build"
           }
         },
         "test": {
@@ -153,18 +153,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "mystic:serve"
+            "devServerTarget": "ripley:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "mystic:serve:production"
+              "devServerTarget": "ripley:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "mystic",
+  "defaultProject": "ripley",
   "cli": {
     "analytics": "c3d59a60-18d4-49f7-b225-9620f3464a12"
   }
