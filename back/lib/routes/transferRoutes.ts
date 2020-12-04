@@ -15,9 +15,9 @@ export class TransferRoutes {
     }
 
     routes() {
-        this.router.get("/", this.transferController.getTransfers);
-        this.router.get("/:id", this.transferController.getTransfer);
-        this.router.get("/user/:id", this.transferController.getTransfersUser);
+        this.router.get("/", this.authController.authenticateJWT, this.transferController.getTransfers);
+        this.router.get("/:id",this.authController.authenticateJWT, this.transferController.getTransfer);
+        this.router.get("/user/:id", this.authController.authenticateJWT, this.transferController.getTransfersUser);
         this.router.post("/", this.authController.authenticateJWT, this.transferController.createTransfer);
         this.router.put("/:id", this.authController.authenticateJWT, this.transferController.updateTransfer);
         this.router.delete("/:id", this.authController.authenticateJWT, this.transferController.deleteTransfer);

@@ -16,7 +16,7 @@ export class AccountRoutes {
 
     routes() {
         this.router.get("/", this.authController.authenticateJWT, this.accountController.getAccounts);
-        this.router.get("/:id", this.accountController.getAccounts);
+        this.router.get("/:id", this.authController.authenticateJWT, this.accountController.getAccounts);
         this.router.get("/user/:id", this.authController.authenticateJWT, this.accountController.getAccountUser);
         this.router.post("/", this.authController.authenticateJWT, this.accountController.createAccount);
         this.router.put("/:id", this.authController.authenticateJWT, this.accountController.updateAccount);

@@ -28,7 +28,7 @@ services:
         dockerfile: ./build/dockerfile-angular
       stdin_open: true
       ports:
-        - '4200:4200'
+        - "4201:4201"
       depends_on:
         - dbmongo
         - apiripley

@@ -2,9 +2,9 @@ FROM node:12
 
 ENV PORT 3000
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_ENV production
+ENV NODE_ENV local
 
-ENV MONGODB_URI mongodb://db:27017
+ENV MONGODB_URI mongodb://dbmongo:27017
 ENV JWT_SECRET APISECRET
 ENV SALT_SECRET 8
 
@@ -17,5 +17,5 @@ RUN npm install --silent
 
 COPY back/ /usr/src/app
 
-CMD "npm" "start"
 EXPOSE 3000
+CMD "npm" "start"
