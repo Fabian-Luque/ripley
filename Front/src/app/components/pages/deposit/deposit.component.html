@@ -1,0 +1,37 @@
+<div class="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
+  <app-side-navbar></app-side-navbar>
+  <main class="body-content">
+  <app-top-navbar></app-top-navbar>
+       <div class="ms-content-wrapper">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="ms-panel">
+              <div class="ms-panel-header">
+                <h6>Formulario de deposito</h6>
+              </div>
+              <div class="ms-panel-body">
+                <form *ngIf="depositForm" [formGroup]="depositForm" (ngSubmit)="onSubmit()">
+                  <div class="form-group">
+                    <label for="amount">Monto</label>
+                    <input 
+                      type="number" 
+                      formControlName="amount" 
+                      class="form-control" 
+                      [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" 
+                      placeholder="Monto a depositar" 
+                      >
+                    <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                      <div *ngIf="f.amount.errors.required">El monto es requerido</div>
+                    </div>
+                  </div>
+                  <input type="submit" class="btn btn-primary d-block w-100" name="deposit" value="Depositar"/>
+                  <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+
+                </form>
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
+  </main>
+  </div>

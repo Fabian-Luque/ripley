@@ -1,0 +1,71 @@
+<div class="ms-body ms-primary-theme ms-logged-out">
+<main class="body-content">
+<!-- Body Content Wrapper -->
+    <div class="ms-content-wrapper ms-auth">
+
+      <div class="ms-auth-container">
+        <div class="ms-auth-col">
+          <div class="ms-auth-bg"></div>
+        </div>
+        <div class="ms-auth-col">
+          <div class="ms-auth-form">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <h1>Ingresa a tu cuenta</h1>
+              <p>Ingresa tu correo y contraseña</p>
+              <div class="mb-3">
+                <label for="email">Correo</label>
+                <div class="input-group">
+                  <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Correo">
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">El correo es requerido</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-2">
+                <label for="validationCustom09">Contraseña</label>
+                <div class="input-group">
+                  <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Contraseña">
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">La contraseña es requerida</div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="form-group">
+                <label class="d-block mt-3"><a routerLink="/login" class="btn-link" data-toggle="modal" data-target="#modal-12">Olvidaste la contraseña?</a></label>
+              </div> -->
+              <button [disabled]="loading" class="btn btn-primary">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Ingresar
+              </button>
+              <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+              <p class="mb-0 mt-3 text-center">No tienes una cuenta? <a class="btn-link" routerLink="/registration">Crear cuenta</a> </p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- Forgot Password Modal -->
+    <div class="modal fade" id="modal-12" tabindex="-1" role="dialog" aria-labelledby="modal-12">
+      <div class="modal-dialog modal-dialog-centered modal-min" role="document">
+        <div class="modal-content">
+
+          <div class="modal-body text-center">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <i class="flaticon-secure-shield d-block"></i>
+            <h1>Olvidaste la contraseña?</h1>
+            <p> Ingresa tu correo para recuperar tu contraseña </p>
+            <!-- <form method="post">
+              <div class="ms-form-group has-icon">
+                <input type="text" placeholder="Correo" class="form-control" name="forgot-password" value="">
+                <i class="material-icons">email</i>
+              </div>
+              <button type="submit" class="btn btn-primary shadow-none">Recuperar contraseña!</button>
+            </form> -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+</main>
+</div>

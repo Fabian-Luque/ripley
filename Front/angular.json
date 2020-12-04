@@ -1,0 +1,171 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "mystic": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/mystic",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/assets/vendors/iconic-fonts/font-awesome/css/all.min.css",
+              "src/assets/vendors/iconic-fonts/flat-icons/flaticon.css",
+              "src/assets/vendors/iconic-fonts/cryptocoins/cryptocoins.css",
+              "src/assets/vendors/iconic-fonts/cryptocoins/cryptocoins-colors.css",
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/animate.min.css",
+              "src/assets/css/datatables.min.css",
+              "src/assets/css/driver.min.css",
+              "src/assets/css/jquery-jvectormap-2.0.3.css",
+              "src/assets/css/morris.css",
+              "src/assets/css/sweetalert2.min.css",
+              "src/assets/css/toastr.min.css",
+              "src/assets/css/jquery-ui.min.css",
+              "src/assets/css/cropper.min.css",
+              "src/assets/css/ion.rangeSlider.min.css",
+              "src/assets/css/slick.css",
+              "src/assets/css/style.css",
+              "src/styles.css"
+            ],
+            "scripts": [
+              "src/assets/js/jquery-3.3.1.min.js",
+              "src/assets/js/popper.min.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/perfect-scrollbar.js",
+              "src/assets/js/jquery-ui.min.js",
+              "src/assets/js/slick.min.js",
+              "src/assets/js/moment.js",
+              "src/assets/js/Chart.bundle.min.js",
+              "src/assets/js/Chart.Financial.js",
+              "src/assets/js/datatables.min.js",
+              "src/assets/js/driver.min.js",
+              "src/assets/js/jquery.countdown.min.js",
+              "src/assets/js/jquery.steps.min.js",
+              "src/assets/js/morris.min.js",
+              "src/assets/js/promise.min.js",
+              "src/assets/js/raphael.min.js",
+              "src/assets/js/sweetalert2.min.js",
+              "src/assets/js/toastr.min.js",
+              "src/assets/js/d3.v3.min.js",
+              "src/assets/js/topojson.v1.min.js",
+              "src/assets/js/datamaps.all.min.js",
+              "src/assets/js/cropper.min.js",
+              "src/assets/js/ion.rangeSlider.min.js",
+              "src/assets/js/jquery.webticker.min.js",
+              "src/assets/js/mystic.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "mystic:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "mystic:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "mystic:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "mystic:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "mystic:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "mystic",
+  "cli": {
+    "analytics": "c3d59a60-18d4-49f7-b225-9620f3464a12"
+  }
+}

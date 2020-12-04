@@ -1,0 +1,76 @@
+<div class="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
+<!--<app-setting-panel></app-setting-panel>-->
+<app-pre-loader *ngIf="!account"></app-pre-loader>
+
+<app-side-navbar></app-side-navbar>
+<main class="body-content">
+<app-top-navbar></app-top-navbar>
+<!-- Body Content Wrapper -->
+     <div class="ms-content-wrapper">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="ms-panel">
+            <div class="ms-panel-header">
+              <h6>Formulario de transferencia de dinero</h6>
+            </div>
+            <div class="ms-panel-body">
+              <p>Busca por RUT o selecciona un destinatario</p>
+              <form *ngIf="rutForm" [formGroup]="rutForm">
+                <div class="form-group">
+                  <label for="rut">RUT <small>sin punto ni guión</small></label>
+                  <input 
+                    type="number" 
+                    formControlName="rut" 
+                    class="form-control" 
+                    [ngClass]="{ 'is-invalid':submittedRut && fr.rut.errors }" 
+                    placeholder="RUT" 
+                    id="rut"
+                    >
+                  <div *ngIf="submittedRut && fr.rut.errors" class="invalid-feedback">
+                    <div *ngIf="fr.rut.errors.required">El RUT es requerido</div>
+                    <div *ngIf="fr.rut.errors.maxlength">El RUT es demaciado largo</div>
+                    <div *ngIf="fr.rut.errors.minlength">El RUT es demaciado corto</div>
+                  </div>
+                  <button class="btn btn-primary d-block w-100" (click)="searchAccount()">Buscar</button>
+                </div>
+              </form>
+              <hr />
+              <form *ngIf="transferForm" [formGroup]="transferForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label for="receiver">Destinatario</label>
+                  <div class="input-group">
+                    <select class="form-control" id="receiver" formControlName="receiver" [ngClass]="{ 'is-invalid': f.receiver.errors && submitted}">
+                      <option value="">--seleccione--</option>
+                      <option *ngFor="let user of users" value="{{user._id}}">{{user.name}}</option>
+                    </select>
+              
+                    <div *ngIf="submitted && f.receiver.errors" class="invalid-feedback">
+                      Por favor selecciona un destinatario
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="amount">Monto <small>(Maximo {{account?.amount| currency }})</small></label>
+                  <input 
+                    type="number" 
+                    formControlName="amount" 
+                    class="form-control" 
+                    [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" 
+                    placeholder="Monto a depositar" 
+                    id="amount"
+                    >
+                  <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                    <div *ngIf="f.amount.errors.required">El monto es requerido</div>
+                  </div>
+                </div>
+                <input type="submit" class="btn btn-primary d-block w-100" name="btn100" value="Transferir"/>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+              </form>
+            </div>
+          </div>
+      </div>
+      </div>
+    </div>
+</main>
+</div>
